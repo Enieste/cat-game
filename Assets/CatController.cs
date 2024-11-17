@@ -107,4 +107,9 @@ public class CatController : MonoBehaviour
             animator.SetBool("isWalking", walking);
         }
     }
+
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
 }

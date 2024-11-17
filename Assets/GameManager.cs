@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,4 +22,5 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
