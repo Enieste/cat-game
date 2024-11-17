@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - cat
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 81574077
+    locked: 1
+  - name: Furniture
+    uniqueID: 4046288399
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: dialogue
+    uniqueID: 1153456133
+    locked: 0
+  - name: camera
+    uniqueID: 3061839297
+    locked: 0
