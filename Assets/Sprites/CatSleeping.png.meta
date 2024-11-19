@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f451efdde79484594a78ec84fbf7ed52
+guid: 00a1868916ad44a788e1eec7558559c6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cat_0
+      name: CatSleeping_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a174bcbd35b9641b7a58b64da381d075
-      internalID: 182687000
+      spriteID: cde975fe1af7c4702a823c7fd884f51c
+      internalID: -529098878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat_1
+      name: CatSleeping_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2677c766ba624c619e9273c92904b8a
-      internalID: 6777197
+      spriteID: 79fc37fca05394b159651f742caf0aa2
+      internalID: -2086990694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat_2
+      name: CatSleeping_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 080c008af7525415c9c56fcbbdea8fe4
-      internalID: 1551533688
+      spriteID: f49702accd1c040a681d7a673d15263f
+      internalID: -1795759230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat_3
+      name: CatSleeping_3
       rect:
         serializedVersion: 2
         x: 96
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1653ca54b155842a1a5f0018eecce550
-      internalID: -1881593667
+      spriteID: 2256c02e9f804479da43ad5a96a44367
+      internalID: -1880081237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat_4
+      name: CatSleeping_4
       rect:
         serializedVersion: 2
         x: 128
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e40ecdbbab3da4479ac263183ae6872e
-      internalID: 1310282706
+      spriteID: a39ddf9fd56c2452db626ff21d2f442b
+      internalID: -329631849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat_5
+      name: CatSleeping_5
       rect:
         serializedVersion: 2
         x: 160
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d673e4f494ab548b5a1e808e2b1ba2b0
-      internalID: 1018366611
+      spriteID: d182eabc8fcee4bea9eb34458f3c3bc7
+      internalID: -7930541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat_6
+      name: CatSleeping_6
       rect:
         serializedVersion: 2
         x: 192
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 171e90fd8d9bd4a0ea4298e396164be5
-      internalID: 1642355882
+      spriteID: 5c7fcfffb0cb44c199230964df0f711b
+      internalID: 1876489378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat_7
+      name: CatSleeping_7
       rect:
         serializedVersion: 2
         x: 224
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b1d65b32a2d7450da5475ea3c17dc5a
-      internalID: -226599262
+      spriteID: eb51029c210ff4b008822d274852df10
+      internalID: 1648981456
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cat_0: 182687000
-      Cat_1: 6777197
-      Cat_2: 1551533688
-      Cat_3: -1881593667
-      Cat_4: 1310282706
-      Cat_5: 1018366611
-      Cat_6: 1642355882
-      Cat_7: -226599262
+      CatSleeping_0: -529098878
+      CatSleeping_1: -2086990694
+      CatSleeping_2: -1795759230
+      CatSleeping_3: -1880081237
+      CatSleeping_4: -329631849
+      CatSleeping_5: -7930541
+      CatSleeping_6: 1876489378
+      CatSleeping_7: 1648981456
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,6 +15,7 @@ VAR play = 50.0
 VAR pets = 50.0
 VAR daylight = 100
 VAR date = 1
+VAR isLyingDown = false  // New variable to track cat state
 
 
 === cat_dialogue ===
@@ -106,4 +107,15 @@ You go to bed...
     The kitten follows you to bed immediately...
     He purrs and curls up next to your pillow.
     You both sleep peacefully.
+        -> END
+        
+        
+=== cat_couch === 
+The cat is comfortably lying on your couch.
+    + [Pet the cat]
+        The cat purrs contentedly, enjoying the attention.
+        -> END
+    + [Shoo away]
+        The cat gives you an annoyed look but jumps down from the couch.
+        ~ isLyingDown = false
         -> END

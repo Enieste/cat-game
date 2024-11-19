@@ -53,6 +53,13 @@ public class InkDialogueManager : MonoBehaviour
         ContinueStory();
     }
 
+    public void StartCouchDialogue()
+    {
+        dialoguePanel.SetActive(true);
+        story.ChoosePathString("cat_couch");
+        ContinueStory();
+    }
+
     public void StartFoodBowlDialogue()
     {
         dialoguePanel.SetActive(true);
@@ -152,11 +159,22 @@ public class InkDialogueManager : MonoBehaviour
         }
     }
 
-
     private void MakeChoice(int choiceIndex)
     {
-        story.ChooseChoiceIndex(choiceIndex);
-        ContinueStory();
+        if (story.currentChoices[choiceIndex].text.Contains("Shoo away"))
+        {
+            CatController cat = FindObjectOfType<CatController>();
+            if (cat != null)
+            {
+                cat.ShooAway();
+            }
+            EndDialogue();
+        }
+        else
+        {
+            story.ChooseChoiceIndex(choiceIndex);
+            ContinueStory();
+        }
     }
 
     private void EndDialogue()

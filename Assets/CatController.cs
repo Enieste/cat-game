@@ -17,6 +17,15 @@ public class CatController : MonoBehaviour
     public float playDecayRate = 3f;
     public float petsDecayRate = 3f;
 
+    [Header("Positions")]
+    public Transform floorPosition;
+    public Transform couchPosition;
+
+    public bool isOnCouch = false;
+    private static readonly string IS_LYING = "isLying";
+    private static readonly string IS_WALKING = "isWalking";
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -25,6 +34,11 @@ public class CatController : MonoBehaviour
         catCollider = GetComponent<BoxCollider2D>();
         fixedY = transform.position.y;
         targetPosition = transform.position;
+
+        if (Random.value < 0.5f && couchPosition != null)
+        {
+            PlaceOnCouch();
+        }
 
         if (dialogueManager != null)
         {
@@ -51,7 +65,7 @@ public class CatController : MonoBehaviour
         InkStateHandler.SetDaylight(newDaylight);
 
         // Movement update
-        if (isMoving)
+        if (isMoving && !isOnCouch)
         {
             Vector3 currentTarget = new Vector3(targetPosition.x, fixedY, targetPosition.z);
             float distanceToTarget = Vector3.Distance(transform.position, currentTarget);
@@ -83,11 +97,16 @@ public class CatController : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Cat clicked!");
-        if (!isMoving && dialogueManager != null)
+        if (dialogueManager != null)
         {
-            Debug.Log("Starting dialogue...");
-            dialogueManager.StartDialogue();
+            if (isOnCouch)
+            {
+                dialogueManager.StartCouchDialogue();
+            }
+            else
+            {
+                dialogueManager.StartDialogue();
+            }
         }
     }
 
@@ -104,12 +123,35 @@ public class CatController : MonoBehaviour
     {
         if (animator != null)
         {
-            animator.SetBool("isWalking", walking);
+            animator.SetBool(IS_WALKING, walking);
         }
     }
 
     public bool IsMoving()
     {
         return isMoving;
+    }
+
+    private void PlaceOnCouch()
+    {
+        transform.position = couchPosition.position;
+        isOnCouch = true;
+        animator.SetBool(IS_LYING, true);
+        animator.SetBool(IS_WALKING, false);
+    }
+
+    public void ShooAway()
+    {
+        if (floorPosition != null)
+        {
+            animator.SetBool(IS_LYING, false);
+            isOnCouch = false;
+            transform.position = floorPosition.position;
+            targetPosition = transform.position;
+
+            // cat walk a bit after being shooed
+            Vector3 randomDirection = new Vector3(Random.Range(-2f, 2f), 0, 0);
+            MoveTo(transform.position + randomDirection);
+        }
     }
 }
