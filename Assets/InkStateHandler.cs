@@ -5,6 +5,8 @@ using System;
 public static class InkStateHandler
 {
     private static Story _story;
+    
+    private static int DAYLIGHT = 100;
 
     public static Story GetStory()
     {
@@ -21,6 +23,7 @@ public static class InkStateHandler
             _story.variablesState["food"] = 50f;
             _story.variablesState["play"] = 50f;
             _story.variablesState["pets"] = 50f;
+            _story.variablesState["daylight"] = DAYLIGHT;
 
             Debug.Log($"Ink story initialized with values - Food: {GetFood()}, Play: {GetPlay()}, Pets: {GetPets()}");
         }
@@ -36,6 +39,12 @@ public static class InkStateHandler
 
         _story.BindExternalFunction("GetPets", () => GetPets());
         _story.BindExternalFunction("SetPets", (float value) => SetPets(value));
+        
+        _story.BindExternalFunction("GetDate", () => GetDate());
+        _story.BindExternalFunction("SetDate", (int value) => SetDate(value));
+        
+        _story.BindExternalFunction("isNight", () => IsNight());
+        _story.BindExternalFunction("goDay", GoDay);
     }
 
     private static void ResetState()
@@ -84,12 +93,12 @@ public static class InkStateHandler
         _story.variablesState["pets"] = Mathf.Clamp(value, 0f, 100f);
     }
 
-    public static byte GetDate()
+    public static int GetDate()
     {
-        return (byte)_story.variablesState["date"];
+        return (int)_story.variablesState["date"];
     }
 
-    public static void SetDate(byte value)
+    public static void SetDate(int value)
     {
         _story.variablesState["date"] = value;
     }
@@ -104,6 +113,19 @@ public static class InkStateHandler
         int min = 0;
         int max = 100;
         _story.variablesState["daylight"] = System.Math.Clamp(value, min, max);
+    }
+
+    public static bool IsNight()
+    {
+        return GetDaylight() == 0;
+    }
+
+    public static void GoDay()
+    {
+        var date = GetDate();
+        date++;
+        SetDate(date);
+        SetDaylight(DAYLIGHT);
     }
 
     public static Story GetStory(TextAsset inkJSON)

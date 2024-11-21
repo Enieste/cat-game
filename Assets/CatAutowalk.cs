@@ -42,9 +42,6 @@ public class CatAutowalk : MonoBehaviour
             // Random delay between minIdleTime and maxIdleTime seconds while idle
             float idleTime = Random.Range(minIdleTime, maxIdleTime);
             float timer = 0f;
-            
-            Debug.LogError(timer);
-
             while (timer < idleTime)
             {
                 // Check if cat started moving for some other reason

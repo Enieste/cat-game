@@ -9,6 +9,9 @@ EXTERNAL GetDaylight()
 EXTERNAL GetDate()
 EXTERNAL SetDate(value)
 
+EXTERNAL isNight()
+EXTERNAL goDay()
+
 
 VAR food = 50.0
 VAR play = 50.0

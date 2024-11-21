@@ -6,14 +6,15 @@ public class CatController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private InkDialogueManager dialogueManager;
     private BoxCollider2D catCollider;
+    [SerializeField] private HungerSystem hungerSystem;
+
 
     public float moveSpeed = 2f;
     public float stoppingDistance = 0.5f;
     private Vector3 targetPosition;
     private bool isMoving = false;
     private float fixedY;
-
-    public float foodDecayRate = 5f;
+    
     public float playDecayRate = 3f;
     public float petsDecayRate = 3f;
 
@@ -46,24 +47,31 @@ public class CatController : MonoBehaviour
         }
 
         SetWalkingAnimation(false);
+
+        hungerSystem.OnActionOccurred += HandleHungerAction;
+        
+    }
+    
+    private void HandleHungerAction(HungerAction action)
+    {
+        switch (action)
+        {
+            case HungerAction.Hungry:
+                // Trigger meowing or other hungry behavior
+                Debug.Log("Cat is getting hungry!");
+                break;
+            case HungerAction.Starving:
+                // More desperate behavior
+                Debug.Log("Cat is starving! Feed me now!");
+                break;
+        }
     }
 
     void Update()
     {
-        // Update stats
-        float deltaMinutes = Time.deltaTime / 60f;
-        float currentFood = InkStateHandler.GetFood();
-        float currentPlay = InkStateHandler.GetPlay();
-        float currentPets = InkStateHandler.GetPets();
-        int currentDaylight = InkStateHandler.GetDaylight();
-
-        InkStateHandler.SetFood(currentFood - foodDecayRate * deltaMinutes);
-        InkStateHandler.SetPlay(currentPlay - playDecayRate * deltaMinutes);
-        InkStateHandler.SetPets(currentPets - petsDecayRate * deltaMinutes);
-
-        int newDaylight = currentDaylight - 1;
-        InkStateHandler.SetDaylight(newDaylight);
-
+        
+        hungerSystem.ProcessTime(Time.deltaTime, ActivityType.Resting);
+        
         // Movement update
         if (isMoving && !isOnCouch)
         {
