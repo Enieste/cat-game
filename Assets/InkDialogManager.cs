@@ -41,9 +41,21 @@ public class InkDialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
+    public void InitAndStartDialogue(string knot)
+    {
+        if (inkJSON != null && story == null)
+        {
+            InkStateHandler.Initialize(inkJSON);
+            story = InkStateHandler.GetStory();
+        }
+
+        dialoguePanel.SetActive(true);
+        story.ChoosePathString(knot);
+        ContinueStory();
+    }
+
     public void StartDialogue()
     {
-        Debug.Log("Starting dialogue in DialogueManager");
         dialoguePanel.SetActive(true);
 
         canProcessChoices = false;
@@ -180,6 +192,13 @@ public class InkDialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+
+        IntroSceneManager introManager = FindObjectOfType<IntroSceneManager>();
+        if (introManager != null)
+        {
+            Debug.Log("Found IntroSceneManager, calling OnDialogueEnd");
+            introManager.OnDialogueEnd();
+        }
 
         if (isNightMode)
         {
