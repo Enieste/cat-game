@@ -8,16 +8,12 @@ public static class InkStateHandler
     
     private static int DAYLIGHT = 100;
 
-    public static Story GetStory()
-    {
-        return _story;
-    }
-
-    public static void Initialize(TextAsset inkJSON)
+    public static Story InitializeOrGet(TextAsset inkJSON)
     {
         if (_story == null)
         {
             _story = new Story(inkJSON.text);
+            _story.allowExternalFunctionFallbacks = true;
             BindExternalFunctions();
 
             _story.variablesState["food"] = 50f;
@@ -27,6 +23,8 @@ public static class InkStateHandler
 
             Debug.Log($"Ink story initialized with values - Food: {GetFood()}, Play: {GetPlay()}, Pets: {GetPets()}");
         }
+
+        return _story;
     }
 
     private static void BindExternalFunctions()
@@ -46,7 +44,13 @@ public static class InkStateHandler
         _story.BindExternalFunction("isNight", () => IsNight());
         _story.BindExternalFunction("goDay", GoDay);
 
-      
+        //_story.BindExternalFunction("Pet", () => {
+        //    throw new Exception("Pet function not redefined");
+        //});
+        //_story.BindExternalFunction("Feed", () => {
+        //    throw new Exception("Feed function not redefined");
+        //});
+
 
     }
 
@@ -135,7 +139,7 @@ public static class InkStateHandler
     {
         if (_story == null)
         {
-            Initialize(inkJSON);
+            InitializeOrGet(inkJSON);
         }
         return _story;
     }

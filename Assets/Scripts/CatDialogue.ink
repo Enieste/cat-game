@@ -1,9 +1,21 @@
+=== function Pet ===
+~ return
+
+=== function Feed ===
+~ return
+
+=== function Play ===
+~ return
+
 EXTERNAL GetFood()
 EXTERNAL SetFood(value)
 EXTERNAL GetPlay()
 EXTERNAL SetPlay(value)
 EXTERNAL GetPets()
 EXTERNAL SetPets(value)
+EXTERNAL Pet()
+EXTERNAL Feed()
+EXTERNAL Play()
 
 EXTERNAL GetDaylight()
 EXTERNAL GetDate()
@@ -18,7 +30,6 @@ VAR play = 50.0
 VAR pets = 50.0
 VAR daylight = 100
 VAR date = 1
-
 
 === cat_dialogue ===
 ~ temp currentFood = GetFood()
@@ -42,8 +53,7 @@ VAR date = 1
 }
 
 + [Pet the cat]
-    ~ pets += 20.0
-    ~ SetPets(pets)
+    ~ Pet()
     {currentFood < 30:
         The cat purrs, but keeps looking at the food bowl...
     - else:
@@ -51,8 +61,7 @@ VAR date = 1
     }
     -> END
 + [Play with cat]
-    ~ play += 10.0
-    ~ SetPlay(play)
+    ~ SetPlay(play + 10)
     {currentFood < 30:
         The cat tries to play, but seems more interested in food right now.
     - else:
@@ -67,8 +76,7 @@ VAR date = 1
 ~ temp currentFood = GetFood()
 The cat watches the food bowl intently.
 + [Feed the cat]
-    ~ food += 30.0
-    ~ SetFood(food)
+    ~ Feed()
     You pour some food into the bowl. The cat happily munches away.
     -> END
 + [Ignore]
@@ -82,44 +90,37 @@ The cat watches the food bowl intently.
 === night_1 ===
 You go to bed...
 + [Leave the door closed]
-    ~ pets -= 10.0
-    ~ SetPets(pets)
+    ~ SetPets(pets - 10)
     You close the door and try to sleep.
     Suddenly, you wake up because of sad squeaks behind the door...
         + +  [Let the kitten in]
                     The kitten happily enters your room. Jumps up your bed, purrs and curls up next to you.
-                    ~ pets += 30.0
-                    ~ SetPets(pets)
+                    ~ SetPets(pets + 30)
                             -> END
         ++  [Ignore the squeaks]
             You try to ignore the meowing...
                 +++  [Put a pillow over your head]
-                            ~ pets -= 20.0
-                            ~ SetPets(pets)
+                            ~ SetPets(pets - 20)
                             The squeaks continue, but become more distant as you drift off to sleep.
                             -> END
                 +++  [Feel guilty]
                             After a few minutes of guilt, you get up and open the door.
                             The kitten triumphantly enters and claims its spot on your bed.
-                            ~ pets += 30.0
-                            ~ SetPets(pets)
+                            ~ SetPets(pets + 30)
                             -> END
         ++ [Call out "Go to sleep!"]
            The meowing stops for a moment...
            Then continues even louder.
                 +++  [Give up and open the door]
                             The cat struts in victoriously.
-                            ~ pets += 30.0
-                            ~ SetPets(pets)
+                            ~ SetPets(pets + 30)
                             -> END
                +++  [Endure it stubbornly]
                             It takes a long time, but eventually you fall asleep while the cat continues to sit near the door.
-                            ~ pets -= 20.0
-                            ~ SetPets(pets)
+                            ~ SetPets(pets - 20)
                             -> END
 + [Leave the door open]
-    ~ pets += 30.0
-    ~ SetPets(pets)
+    ~ SetPets(pets - 30)
     The kitten follows you to bed immediately...
     He purrs and curls up next to your pillow.
     You both sleep peacefully.
@@ -130,13 +131,11 @@ You go to bed...
 The cat is comfortably lying on a surface.
     + [Pet the cat]
         The cat purrs contentedly, enjoying the attention.
-        ~ pets += 10.0
-        ~ SetPets(pets)
+        ~ Pet()
         -> END
     + [Shoo away]
         The cat gives you an annoyed look but jumps down from the couch.
-        ~ pets -= 10.0
-        ~ SetPets(pets)
+        ~ SetPets(pets - 20)
         -> END
         
 === beginning ==== 

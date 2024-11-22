@@ -2972,6 +2972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ba0427a5a14f3ca8a5a420d222cb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 0}
 --- !u!1 &1615532985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,6 +3353,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: cat_icon
       objectReference: {fileID: 0}
+    - target: {fileID: 6886350733791003999, guid: b3d528bf0ffd946509bf14c5f669d86e, type: 3}
+      propertyPath: hungerSystem
+      value: 
+      objectReference: {fileID: 1611341713}
     - target: {fileID: 7495374910530248607, guid: b3d528bf0ffd946509bf14c5f669d86e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.03

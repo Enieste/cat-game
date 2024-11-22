@@ -278,6 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36725662acaaa4b30a51f84f532ea166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 430340658}
+  hungerSystem: {fileID: 195910344}
 --- !u!1 &136261706
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ba0427a5a14f3ca8a5a420d222cb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 430340658}
 --- !u!1 &209114439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f780145ad6684595bd1749331c182c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerSystem: {fileID: 195910344}
 --- !u!1 &430340657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,7 +1963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1136821172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2507,12 +2509,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410279371}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.07, y: 1.06, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.0699997, y: 0.059999943, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1499709048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1499709047
 GameObject:
@@ -2553,6 +2555,7 @@ Transform:
   - {fileID: 1695527493}
   - {fileID: 1698916827}
   - {fileID: 1991812912}
+  - {fileID: 1410279372}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526150841
@@ -3242,10 +3245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cat_icon
       objectReference: {fileID: 0}
-    - target: {fileID: 3388672643994039315, guid: b3d528bf0ffd946509bf14c5f669d86e, type: 3}
-      propertyPath: m_TagString
-      value: cat_icon
-      objectReference: {fileID: 0}
+    - target: {fileID: 6886350733791003999, guid: b3d528bf0ffd946509bf14c5f669d86e, type: 3}
+      propertyPath: hungerSystem
+      value: 
+      objectReference: {fileID: 195910344}
     - target: {fileID: 7495374910530248607, guid: b3d528bf0ffd946509bf14c5f669d86e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.01
@@ -3397,7 +3400,6 @@ SceneRoots:
   - {fileID: 430340659}
   - {fileID: 850841420}
   - {fileID: 136261708}
-  - {fileID: 1410279372}
   - {fileID: 1021757153}
   - {fileID: 165079915}
   - {fileID: 5624553763879883457}

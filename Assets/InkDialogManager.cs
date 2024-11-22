@@ -26,13 +26,16 @@ public class InkDialogueManager : MonoBehaviour
     private Story story;
     private bool canProcessChoices = false;
 
+    // TODO figure out how to incapsulate binding callbacks
+    public Story GetStory()
+    {
+        return InkStateHandler.InitializeOrGet(inkJSON);
+    }
+    
+
     void Awake()
     {
-        if (inkJSON != null)
-        {
-            InkStateHandler.Initialize(inkJSON);
-            story = InkStateHandler.GetStory();
-        }
+        story = GetStory();
     }
 
     void Start()
@@ -43,11 +46,11 @@ public class InkDialogueManager : MonoBehaviour
 
     public void InitAndStartDialogue(string knot)
     {
-        if (inkJSON != null && story == null)
-        {
-            InkStateHandler.Initialize(inkJSON);
-            story = InkStateHandler.GetStory();
-        }
+        //if (story == null)
+        //{
+
+        //    story = GetStory();
+        //}
 
         dialoguePanel.SetActive(true);
         story.ChoosePathString(knot);

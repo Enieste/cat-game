@@ -2,12 +2,23 @@ using UnityEngine;
 
 public class FoodBowl : MonoBehaviour
 {
-    private InkDialogueManager dialogueManager;
+    [SerializeField] private InkDialogueManager dialogueManager;
+    [SerializeField] private HungerSystem hungerSystem;
 
     void Start()
     {
-        dialogueManager = FindObjectOfType<InkDialogueManager>();
         Debug.Log("Food Bowl initialized, DialogueManager found: " + (dialogueManager != null));
+    }
+
+
+    private void Awake()
+    {
+        BindInkMethods();
+    }
+
+    private void BindInkMethods()
+    {
+        dialogueManager.GetStory().BindExternalFunction("Feed", DispenseFood);
     }
 
     void OnMouseDown()
@@ -30,4 +41,17 @@ public class FoodBowl : MonoBehaviour
             Debug.LogError("No DialogueManager found!");
         }
     }
+
+    public void DispenseFood()
+    {
+        var kibble = new Kibble();
+        hungerSystem.FeedWith(kibble);
+    }
+
+}
+
+public class Kibble : IFood
+{
+    public int SaturationValue => 70;
+    public int ConsumptionTime => 3;
 }

@@ -44,6 +44,8 @@ public class HungerSystem : MonoBehaviour
 {
     private float accumulatedTime;
     private HungerAction? lastNotifiedAction;
+    [SerializeField] private InkDialogueManager dialogueManager;
+
 
     private static readonly Dictionary<ActivityType, int> ActivitySaturationPrice = new Dictionary<ActivityType, int>
     {
@@ -75,15 +77,26 @@ public class HungerSystem : MonoBehaviour
     private void Awake()
     {
         accumulatedTime = 0f;
+        BindInkMethods();
     }
 
-    public void Feed(IFood food)
+    private void BindInkMethods()
+    {
+        dialogueManager.GetStory().BindExternalFunction("Pet", Pet);
+    }
+
+    public void FeedWith(IFood food)
     {
         float currentSaturation = InkStateHandler.GetFood();
         float newSaturation = Mathf.Min(HungerState.Max, currentSaturation + food.SaturationValue);
         InkStateHandler.SetFood(newSaturation);
         CheckAndNotifyHungerState(Mathf.RoundToInt(newSaturation));
         ProcessTime(food.ConsumptionTime, ActivityType.Eating);
+    }
+
+    public void Pet()
+    {
+        ProcessTime(10, ActivityType.Petting);
     }
 
     public void ProcessTime(float deltaTime, ActivityType activity)

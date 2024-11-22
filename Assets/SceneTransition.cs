@@ -7,7 +7,7 @@ public class SceneTransition : MonoBehaviour
     public string targetScene;
     private TextMeshPro textMesh;
     private Vector3 originalScale;
-    private float hoverScale = 1.1f;
+    //private float hoverScale = 1.1f;
 
     void Start()
     {

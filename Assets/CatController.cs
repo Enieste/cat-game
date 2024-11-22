@@ -43,7 +43,7 @@ public class CatController : MonoBehaviour
 
         if (dialogueManager != null)
         {
-            InkStateHandler.Initialize(dialogueManager.inkJSON);
+            InkStateHandler.InitializeOrGet(dialogueManager.inkJSON);
         }
 
         SetWalkingAnimation(false);
