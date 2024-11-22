@@ -17,7 +17,7 @@ public class SceneTransition : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        transform.localScale = originalScale * hoverScale;
+        //transform.localScale = originalScale * hoverScale;
         textMesh.color = Color.yellow;
     }
 
