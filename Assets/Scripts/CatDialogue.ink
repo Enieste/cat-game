@@ -41,31 +41,31 @@ VAR date = 1
 
 {
     - currentPlay < 30 && currentPets < 30:
-        The cat seems very unhappy, desperately trying to get your attention...
+        The cat seems very unhappy, desperately trying to get your attention... # cat_0
     - currentPets < 30:
-        The cat looks at you longingly, wanting affection...
+        The cat looks at you longingly, wanting affection... # cat_1
     - currentPlay < 30:
-        The cat seems restless, looking for something to do...
+        The cat seems restless, looking for something to do... # cat_0
     - currentFood < 30:
-        The cat looks at you with hungry eyes and meows desperately...
+        The cat looks at you with hungry eyes and meows desperately... # cat_0
     - else:
-        The cat looks at you contentedly.
+        The cat looks at you contentedly. # cat_1
 }
 
 + [Pet the cat]
     ~ Pet()
     {currentFood < 30:
-        The cat purrs, but keeps looking at the food bowl...
+        The cat purrs, but keeps looking at the food bowl... # cat_0
     - else:
-        The cat purrs happily, enjoying your attention.
+        The cat purrs happily, enjoying your attention. # cat_1
     }
     -> END
 + [Play with cat]
     ~ SetPlay(play + 10)
     {currentFood < 30:
-        The cat tries to play, but seems more interested in food right now.
+        The cat tries to play, but seems more interested in food right now. # cat_0
     - else:
-        The cat excitedly chases after the toy!
+        The cat excitedly chases after the toy! # cat_thin
     }
     -> END
 + [Ignore]
@@ -74,27 +74,27 @@ VAR date = 1
 
 === food_bowl ===
 ~ temp currentFood = GetFood()
-The cat watches the food bowl intently.
+The cat watches the food bowl intently. # cat_0
 + [Feed the cat]
     ~ Feed()
     You pour some food into the bowl. The cat happily munches away.
     -> END
 + [Ignore]
     {currentFood < 30:
-        The cat meows sadly and keeps staring at the bowl.
+        The cat meows sadly and keeps staring at the bowl. # cat_1
     - else:
-        The cat loses interest and walks away.
+        The cat loses interest and walks away. # cat_0
     }
     -> END
     
 === night_1 ===
-You go to bed...
+You go to bed... #hide_cat
 + [Leave the door closed]
     ~ SetPets(pets - 10)
     You close the door and try to sleep.
     Suddenly, you wake up because of sad squeaks behind the door...
         + +  [Let the kitten in]
-                    The kitten happily enters your room. Jumps up your bed, purrs and curls up next to you.
+                    The kitten happily enters your room. Jumps up your bed, purrs and curls up next to you. # cat_1
                     ~ SetPets(pets + 30)
                             -> END
         ++  [Ignore the squeaks]
@@ -105,14 +105,14 @@ You go to bed...
                             -> END
                 +++  [Feel guilty]
                             After a few minutes of guilt, you get up and open the door.
-                            The kitten triumphantly enters and claims its spot on your bed.
+                            The kitten triumphantly enters and claims its spot on your bed. # cat_1
                             ~ SetPets(pets + 30)
                             -> END
         ++ [Call out "Go to sleep!"]
            The meowing stops for a moment...
            Then continues even louder.
                 +++  [Give up and open the door]
-                            The cat struts in victoriously.
+                            The cat struts in victoriously. # cat_1
                             ~ SetPets(pets + 30)
                             -> END
                +++  [Endure it stubbornly]
@@ -121,7 +121,7 @@ You go to bed...
                             -> END
 + [Leave the door open]
     ~ SetPets(pets - 30)
-    The kitten follows you to bed immediately...
+    The kitten follows you to bed immediately... # show_cat # cat_1
     He purrs and curls up next to your pillow.
     You both sleep peacefully.
         -> END
@@ -130,26 +130,27 @@ You go to bed...
 === cat_couch === 
 The cat is comfortably lying on a surface.
     + [Pet the cat]
-        The cat purrs contentedly, enjoying the attention.
+        The cat purrs contentedly, enjoying the attention. # cat_1
         ~ Pet()
         -> END
     + [Shoo away]
-        The cat gives you an annoyed look but jumps down from the couch.
+        The cat gives you an annoyed look but jumps down from the couch. # cat_0
         ~ SetPets(pets - 20)
         -> END
         
 === beginning ==== 
+# hide_cat
 It was a long day. You're tired from work and your best friend couldn't join you for the evening. 
 You're heading back to your lonely house, thinking about...
 * [New TV series] Maybe you can check out that new show everyone's talking about.
 * [A bottle of beer] Even from the street how you can hear that cold beer in the fridge is calling your name.
 * [Playing a video game] You still need to beat that annoying boss. Blade of... what was his name again? 
 - Yes. The evening probably won't be that bad after all.
-Here's your house. And your porch. And your door. And your box.
+Here's your house. And your porch. And your door. And your box. #show_cat # cat_inbox
     Wait a minute.... What box? You didn't order anything.
 It's not Christmas and it's not your birthday. Maybe you should call the police?
-Suddenly the box cries out in a thin voice. And then you hear some scratching.
-A cat! Somebody left a box with a cat on your porch. 
+Suddenly the box cries out in a thin voice. And then you hear some scratching. Before you have a chance to react... It opens. 
+A cat! Somebody left a box with a cat on your porch. # cat_box
 -> box_action
 
 

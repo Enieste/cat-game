@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InkDialogueManager : MonoBehaviour
 {
@@ -22,6 +23,17 @@ public class InkDialogueManager : MonoBehaviour
     [Header("Night Mode")]
     public NightModeManager nightModeManager;
     public bool isNightMode = false;
+
+    [System.Serializable]
+    public class CatExpression
+    {
+        public string tagName;
+        public Sprite sprite;
+    }
+
+    [Header("Cat Expressions")]
+    public CatExpression[] catExpressions;
+
 
     private Story story;
     private bool canProcessChoices = false;
@@ -104,6 +116,7 @@ public class InkDialogueManager : MonoBehaviour
         if (story.canContinue)
         {
             string text = story.Continue();
+            HandleTags(story.currentTags);
 
             if (story.currentChoices.Count > 0)
             {
@@ -128,6 +141,36 @@ public class InkDialogueManager : MonoBehaviour
         else if (story.currentChoices.Count == 0)
         {
             EndDialogue();
+        }
+    }
+
+    private void HandleTags(List<string> tags)
+    {
+        if (tags.Count > 0 && catPortrait != null)
+        {
+            foreach (string tag in tags)
+            {
+                if (tag == "hide_cat")  
+                {
+                    catPortrait.gameObject.SetActive(false);
+                    return;
+                }
+                else if (tag == "show_cat")
+                {
+                    catPortrait.gameObject.SetActive(true);
+                }
+
+                foreach (CatExpression expression in catExpressions)
+                {
+                    if (tag == expression.tagName)
+                    {
+                        catPortrait.sprite = expression.sprite;
+                        catPortrait.gameObject.SetActive(true);
+                        Debug.Log($"Changed cat expression to: {tag}");
+                        break;
+                    }
+                }
+            }
         }
     }
 

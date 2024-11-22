@@ -850,7 +850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a97b2a12ce82a481d843556551338f19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4aea40b4b75f2488eac7fa61f98c9554, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -884,7 +884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.36969, y: 530}
+  m_AnchoredPosition: {x: -6.14, y: 543.9}
   m_SizeDelta: {x: 648.92993, y: 711.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1569639327
@@ -1086,6 +1086,17 @@ MonoBehaviour:
   inkJSON: {fileID: 4900000, guid: bef88d912bb494c079b7e713e1ed0d92, type: 3}
   nightModeManager: {fileID: 0}
   isNightMode: 0
+  catExpressions:
+  - tagName: cat_0
+    sprite: {fileID: 21300000, guid: b91d79789f1cc42d09092b49e9d64f2b, type: 3}
+  - tagName: cat_1
+    sprite: {fileID: 21300000, guid: 48cb0d117de8a49b9b8c4afcd1f09ad3, type: 3}
+  - tagName: cat_box
+    sprite: {fileID: 21300000, guid: a97b2a12ce82a481d843556551338f19, type: 3}
+  - tagName: cat_inbox
+    sprite: {fileID: 21300000, guid: 4aea40b4b75f2488eac7fa61f98c9554, type: 3}
+  - tagName: cat_thin
+    sprite: {fileID: 21300000, guid: b4cb61c2a7c184105b1dd05a94cbdbd8, type: 3}
 --- !u!4 &2076128045
 Transform:
   m_ObjectHideFlags: 0

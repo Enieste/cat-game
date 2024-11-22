@@ -2149,6 +2149,13 @@ MonoBehaviour:
   inkJSON: {fileID: 4900000, guid: bef88d912bb494c079b7e713e1ed0d92, type: 3}
   nightModeManager: {fileID: 1788949513}
   isNightMode: 0
+  catExpressions:
+  - tagName: cat_0
+    sprite: {fileID: 21300000, guid: b91d79789f1cc42d09092b49e9d64f2b, type: 3}
+  - tagName: cat_1
+    sprite: {fileID: 21300000, guid: 48cb0d117de8a49b9b8c4afcd1f09ad3, type: 3}
+  - tagName: cat_thin
+    sprite: {fileID: 21300000, guid: b4cb61c2a7c184105b1dd05a94cbdbd8, type: 3}
 --- !u!4 &1668946499
 Transform:
   m_ObjectHideFlags: 0

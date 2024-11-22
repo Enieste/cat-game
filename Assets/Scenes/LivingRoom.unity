@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &78725290
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1180,7 +1180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &902531928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1453,7 +1453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f780145ad6684595bd1749331c182c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerSystem: {fileID: 1611341713}
 --- !u!1 &989031726
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,6 +3187,13 @@ MonoBehaviour:
   inkJSON: {fileID: 4900000, guid: bef88d912bb494c079b7e713e1ed0d92, type: 3}
   nightModeManager: {fileID: 1711105015}
   isNightMode: 0
+  catExpressions:
+  - tagName: cat_0
+    sprite: {fileID: 21300000, guid: b91d79789f1cc42d09092b49e9d64f2b, type: 3}
+  - tagName: cat_1
+    sprite: {fileID: 21300000, guid: 48cb0d117de8a49b9b8c4afcd1f09ad3, type: 3}
+  - tagName: cat_thin
+    sprite: {fileID: 21300000, guid: b4cb61c2a7c184105b1dd05a94cbdbd8, type: 3}
 --- !u!4 &1767118415
 Transform:
   m_ObjectHideFlags: 0
