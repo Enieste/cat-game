@@ -70,7 +70,7 @@ public class CatController : MonoBehaviour
     void Update()
     {
         
-        hungerSystem.ProcessTime(Time.deltaTime, ActivityType.Resting);
+        // hungerSystem.ProcessTime(Time.deltaTime, ActivityType.Resting);
         
         // Movement update
         if (isMoving && !isOnCouch)

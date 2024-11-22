@@ -45,6 +45,9 @@ public static class InkStateHandler
         
         _story.BindExternalFunction("isNight", () => IsNight());
         _story.BindExternalFunction("goDay", GoDay);
+
+      
+
     }
 
     private static void ResetState()
