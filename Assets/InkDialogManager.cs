@@ -219,20 +219,22 @@ public class InkDialogueManager : MonoBehaviour
 
     private void MakeChoice(int choiceIndex)
     {
-        if (story.currentChoices[choiceIndex].text.Contains("Shoo away"))
-        {
-            CatController cat = FindObjectOfType<CatController>();
-            if (cat != null)
-            {
-                cat.ShooAway();
-            }
-            EndDialogue();
-        }
-        else
-        {
-            story.ChooseChoiceIndex(choiceIndex);
-            ContinueStory();
-        }
+        //if (story.currentChoices[choiceIndex].text.Contains("Shoo away"))
+        //{
+        //    CatController cat = FindObjectOfType<CatController>();
+        //    if (cat != null)
+        //    {
+        //        cat.ShooAway();
+        //    }
+        //    EndDialogue();
+        //}
+        //else
+        //{
+        //    story.ChooseChoiceIndex(choiceIndex);
+        //    ContinueStory();
+        //}
+        story.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
     }
 
     private void EndDialogue()

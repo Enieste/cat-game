@@ -45,12 +45,12 @@ public class HungerSystem : MonoBehaviour
     private float accumulatedTime;
     private HungerAction? lastNotifiedAction;
     [SerializeField] private InkDialogueManager dialogueManager;
-
+    [SerializeField] private CatController catController;
 
     private static readonly Dictionary<ActivityType, int> ActivitySaturationPrice = new Dictionary<ActivityType, int>
     {
         { ActivityType.Resting, 1 },
-        { ActivityType.Playing, 5 },
+        { ActivityType.Playing, 3 },
         { ActivityType.Petting, 2 },
         // don't make it positive, it's easier to change food value instead
         { ActivityType.Eating, 0 }
@@ -59,17 +59,17 @@ public class HungerSystem : MonoBehaviour
     private static readonly Dictionary<ActivityType, int> ActivityPlaysPrice = new Dictionary<ActivityType, int>
     {
         { ActivityType.Resting, 5 },
-        { ActivityType.Playing, -6 },
+        { ActivityType.Playing, -5 },
         { ActivityType.Petting, 1 },
-        { ActivityType.Eating, 10 }
+        { ActivityType.Eating, 2 }
     };
     
     private static readonly Dictionary<ActivityType, int> ActivityPetsPrice = new Dictionary<ActivityType, int>
     {
         { ActivityType.Resting, 5 },
-        { ActivityType.Playing, 1 },
-        { ActivityType.Petting, -6 },
-        { ActivityType.Eating, 5 }
+        { ActivityType.Playing, 2 },
+        { ActivityType.Petting, -5 },
+        { ActivityType.Eating, 1 }
     };
 
     public event Action<HungerAction> OnActionOccurred;
@@ -82,7 +82,25 @@ public class HungerSystem : MonoBehaviour
 
     private void BindInkMethods()
     {
+        UnbindInkMethods();
         dialogueManager.GetStory().BindExternalFunction("Pet", Pet);
+        InkStateHandler.ReportExternalFunction("Pet");
+        dialogueManager.GetStory().BindExternalFunction("Play", Play);
+        InkStateHandler.ReportExternalFunction("Play");
+
+    }
+
+    private void UnbindInkMethods()
+    {
+        if (InkStateHandler.IsExternalFunctionKnown("Pet"))
+        {
+            dialogueManager.GetStory().UnbindExternalFunction("Pet");
+        }
+        if (InkStateHandler.IsExternalFunctionKnown("Play"))
+        {
+            dialogueManager.GetStory().UnbindExternalFunction("Play");
+        }
+
     }
 
     public void FeedWith(IFood food)
@@ -97,6 +115,11 @@ public class HungerSystem : MonoBehaviour
     public void Pet()
     {
         ProcessTime(10, ActivityType.Petting);
+    }
+
+    public void Play()
+    {
+        ProcessTime(10, ActivityType.Playing);
     }
 
     public void ProcessTime(float deltaTime, ActivityType activity)

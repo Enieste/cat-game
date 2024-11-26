@@ -4,9 +4,11 @@ public class CatController : MonoBehaviour
 {
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    private InkDialogueManager dialogueManager;
+    
     private BoxCollider2D catCollider;
     [SerializeField] private HungerSystem hungerSystem;
+    //private InkDialogueManager dialogueManager;
+    [SerializeField] private InkDialogueManager dialogueManager;
 
 
     public float moveSpeed = 2f;
@@ -31,7 +33,7 @@ public class CatController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        dialogueManager = FindObjectOfType<InkDialogueManager>();
+        // dialogueManager = FindObjectOfType<InkDialogueManager>();
         catCollider = GetComponent<BoxCollider2D>();
         fixedY = transform.position.y;
         targetPosition = transform.position;
@@ -51,6 +53,11 @@ public class CatController : MonoBehaviour
         hungerSystem.OnActionOccurred += HandleHungerAction;
         
     }
+
+    void Awake()
+    {
+        BindInkMethods();
+    }
     
     private void HandleHungerAction(HungerAction action)
     {
@@ -65,6 +72,22 @@ public class CatController : MonoBehaviour
                 Debug.Log("Cat is starving! Feed me now!");
                 break;
         }
+    }
+
+    private void BindInkMethods()
+    {
+        UnbindInkMethods();
+        dialogueManager.GetStory().BindExternalFunction("PutOnFloor", PutOnTheFloor);
+        InkStateHandler.ReportExternalFunction("PutOnFloor");
+    }
+
+    private void UnbindInkMethods()
+    {
+        if (InkStateHandler.IsExternalFunctionKnown("PutOnFloor"))
+        {
+            dialogueManager.GetStory().UnbindExternalFunction("PutOnFloor");
+        }        
+
     }
 
     void Update()
@@ -148,7 +171,7 @@ public class CatController : MonoBehaviour
         //animator.SetBool(IS_WALKING, false);
     }
 
-    public void ShooAway()
+    public void PutOnTheFloor()
     {
         if (floorPosition != null)
         {

@@ -1,6 +1,8 @@
 using UnityEngine;
 using Ink.Runtime;
 using System;
+using System;
+using System.Collections.Generic;
 
 public static class InkStateHandler
 {
@@ -27,6 +29,18 @@ public static class InkStateHandler
         return _story;
     }
 
+    private static HashSet<string> externalFunctionsKnown = new HashSet<string>();
+
+    public static void ReportExternalFunction(string name)
+    {
+        externalFunctionsKnown.Add(name);
+    }
+
+    public static bool IsExternalFunctionKnown(string name)
+    {
+        return externalFunctionsKnown.Contains(name);
+    }
+
     private static void BindExternalFunctions()
     {
         _story.BindExternalFunction("GetFood", () => GetFood());
@@ -43,7 +57,7 @@ public static class InkStateHandler
         
         _story.BindExternalFunction("isNight", () => IsNight());
         _story.BindExternalFunction("goDay", GoDay);
-
+     
         //_story.BindExternalFunction("Pet", () => {
         //    throw new Exception("Pet function not redefined");
         //});

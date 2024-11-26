@@ -120,7 +120,7 @@ MonoBehaviour:
   fadeImage: {fileID: 6169876776024041510}
   loadingText: {fileID: 2446357142974650118}
   loadingIcon: {fileID: 8085640779249450655}
-  fadeDuration: 1
+  fadeDuration: 0.2
 --- !u!1 &5037389339705736150
 GameObject:
   m_ObjectHideFlags: 0

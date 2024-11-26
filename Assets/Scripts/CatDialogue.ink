@@ -7,6 +7,9 @@
 === function Play ===
 ~ return
 
+=== function PutOnFloor ===
+~ return
+
 EXTERNAL GetFood()
 EXTERNAL SetFood(value)
 EXTERNAL GetPlay()
@@ -16,6 +19,7 @@ EXTERNAL SetPets(value)
 EXTERNAL Pet()
 EXTERNAL Feed()
 EXTERNAL Play()
+EXTERNAL PutOnFloor()
 
 EXTERNAL GetDaylight()
 EXTERNAL GetDate()
@@ -61,11 +65,11 @@ VAR date = 1
     }
     -> END
 + [Play with cat]
-    ~ SetPlay(play + 10)
+    ~ Play()
     {currentFood < 30:
         The cat tries to play, but seems more interested in food right now. # cat_0
     - else:
-        The cat excitedly chases after the toy! # cat_thin
+        The cat excitedly chases after your fingers! # cat_thin
     }
     -> END
 + [Ignore]
@@ -74,6 +78,7 @@ VAR date = 1
 
 === food_bowl ===
 ~ temp currentFood = GetFood()
+~ PutOnFloor()
 The cat watches the food bowl intently. # cat_0
 + [Feed the cat]
     ~ Feed()
@@ -128,14 +133,26 @@ You go to bed... #hide_cat
         
         
 === cat_couch === 
+~ temp currentPlay = GetPlay()
 The cat is comfortably lying on a surface.
     + [Pet the cat]
         The cat purrs contentedly, enjoying the attention. # cat_1
         ~ Pet()
         -> END
-    + [Shoo away]
-        The cat gives you an annoyed look but jumps down from the couch. # cat_0
-        ~ SetPets(pets - 20)
+    + [Gently put him on the floor]
+        ~ PutOnFloor()
+        {currentPlay < 30:
+            You managed to place him on the floor, but he tried to bite your fingers in a process. # cat_thin
+            ~ SetPlay(play + 10)
+        - else:
+            The cat purrs while you're putting him on the floor. # cat_1
+            ~ SetPets(pets + 10)
+        }
+        -> END
+    + [He shouldn't be there. Shoo away]
+        ~ PutOnFloor()
+        ~ SetPets(pets - 10)
+        The cat gives you an annoyed look but jumps down from the surface. # cat_0
         -> END
         
 === beginning ==== 

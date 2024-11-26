@@ -590,6 +590,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 430340658}
+  catController: {fileID: 195910345}
+--- !u!114 &195910345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7409942183656191823, guid: 8de1c235fc8f84f93a4b79b516c386a4, type: 3}
+  m_PrefabInstance: {fileID: 6727839354329828064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195910337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f165308777f9d4a31b588ab44d4e0457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &209114439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,7 +1933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1136821172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3417,6 +3429,10 @@ PrefabInstance:
       propertyPath: floorPosition
       value: 
       objectReference: {fileID: 1021757153}
+    - target: {fileID: 7409942183656191823, guid: 8de1c235fc8f84f93a4b79b516c386a4, type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 430340658}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

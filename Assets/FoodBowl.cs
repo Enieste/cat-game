@@ -5,12 +5,6 @@ public class FoodBowl : MonoBehaviour
     [SerializeField] private InkDialogueManager dialogueManager;
     [SerializeField] private HungerSystem hungerSystem;
 
-    void Start()
-    {
-        Debug.Log("Food Bowl initialized, DialogueManager found: " + (dialogueManager != null));
-    }
-
-
     private void Awake()
     {
         BindInkMethods();
@@ -18,8 +12,19 @@ public class FoodBowl : MonoBehaviour
 
     private void BindInkMethods()
     {
+        UnbindInkMethods();
         dialogueManager.GetStory().BindExternalFunction("Feed", DispenseFood);
+        InkStateHandler.ReportExternalFunction("Feed");
     }
+
+    private void UnbindInkMethods()
+    {
+        if (InkStateHandler.IsExternalFunctionKnown("Feed"))
+        {
+            dialogueManager.GetStory().UnbindExternalFunction("Feed");
+        }       
+    }
+
 
     void OnMouseDown()
     {
@@ -52,6 +57,6 @@ public class FoodBowl : MonoBehaviour
 
 public class Kibble : IFood
 {
-    public int SaturationValue => 70;
-    public int ConsumptionTime => 3;
+    public int SaturationValue => 50;
+    public int ConsumptionTime => 10;
 }

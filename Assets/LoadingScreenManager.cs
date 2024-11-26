@@ -27,7 +27,7 @@ public class LoadingScreen : MonoBehaviour
     public GameObject loadingIcon;
 
     [Header("Settings")]
-    public float fadeDuration = 0.5f;
+    public float fadeDuration = 1f;
 
     private bool isLoading = false;
 
@@ -38,7 +38,6 @@ public class LoadingScreen : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // Make sure UI elements are properly setup
             if (fadeImage)
             {
                 fadeImage.color = Color.black;
@@ -55,9 +54,14 @@ public class LoadingScreen : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (!SceneLoadingSettings.NeedsLoadingScreen(sceneName))
+        {
+            SceneManager.LoadScene(sceneName);
+            return;
+        }
+
         if (isLoading) return;
 
-        // Make sure UI elements exist
         if (!fadeImage || !loadingCanvas)
         {
             SceneManager.LoadScene(sceneName);
@@ -68,6 +72,7 @@ public class LoadingScreen : MonoBehaviour
         loadingCanvas.SetActive(true);
         StartCoroutine(LoadSceneRoutine(sceneName));
     }
+
 
     private IEnumerator LoadSceneRoutine(string sceneName)
     {
@@ -92,10 +97,8 @@ public class LoadingScreen : MonoBehaviour
             yield return null;
         }
 
-        // Ensure we're fully black
         fadeImage.color = Color.black;
 
-        // Show loading elements
         if (loadingText)
         {
             loadingText.gameObject.SetActive(true);
