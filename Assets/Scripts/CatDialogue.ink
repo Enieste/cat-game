@@ -157,5 +157,5 @@ A cat! Somebody left a box with a cat on your porch. # cat_box
 === box_action ===
 What do you want to do?
 * [Look for a person who left the box] You look around — the street is empty. Probably that somebody is already far away. -> box_action
-* [Left the box outside and proceed with the initial plan] Well... It's not really an option here. We still have a game to play, are we? -> box_action
+* [Leave the box outside and proceed with the initial plan] Well... It's not really an option here. We still have a game to play, don't we? -> box_action
 * [Take the box home] You have a cat now. -> END        

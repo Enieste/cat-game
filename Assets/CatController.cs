@@ -144,15 +144,15 @@ public class CatController : MonoBehaviour
     {
         transform.position = couchPosition.position;
         isOnCouch = true;
-        animator.SetBool(IS_LYING, true);
-        animator.SetBool(IS_WALKING, false);
+        //animator.SetBool(IS_LYING, true);
+        //animator.SetBool(IS_WALKING, false);
     }
 
     public void ShooAway()
     {
         if (floorPosition != null)
         {
-            animator.SetBool(IS_LYING, false);
+            //animator.SetBool(IS_LYING, false);
             isOnCouch = false;
             transform.position = floorPosition.position;
             targetPosition = transform.position;

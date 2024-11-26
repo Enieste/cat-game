@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class IntroSceneManager : MonoBehaviour
 {
@@ -18,12 +19,33 @@ public class IntroSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Dialogue Manager not assigned!");
+            UnityEngine.Debug.LogError("Dialogue Manager not assigned!");
         }
     }
 
     public void OnDialogueEnd()
     {
-        SceneManager.LoadScene("Kitchen");
+        StartCoroutine(LoadNextSceneRoutine());
+    }
+
+    private IEnumerator LoadNextSceneRoutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        var loadingScreen = LoadingScreen.Instance;
+        if (loadingScreen != null)
+        {
+            if (!loadingScreen.gameObject.activeInHierarchy)
+            {
+                UnityEngine.Debug.Log("Activating LoadingScreen GameObject");
+                loadingScreen.gameObject.SetActive(true);
+            }
+            loadingScreen.LoadScene("Kitchen");
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("LoadingScreen instance not found!");
+            SceneManager.LoadScene("Kitchen");
+        }
     }
 }
