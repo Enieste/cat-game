@@ -136,6 +136,12 @@ public static class InkStateHandler
         _story.variablesState["daylight"] = System.Math.Clamp(value, min, max);
     }
 
+    public static void SetNewDay()
+    {
+        SetDate(GetDate() + 1);
+        SetDaylight(100);
+    }
+
     public static bool IsNight()
     {
         return GetDaylight() == 0;

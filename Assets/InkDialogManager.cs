@@ -4,6 +4,7 @@ using TMPro;
 using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class InkDialogueManager : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class InkDialogueManager : MonoBehaviour
 
     private Story story;
     private bool canProcessChoices = false;
+    private bool shouldStartNightDialogue = false;
 
     // TODO figure out how to incapsulate binding callbacks
     public Story GetStory()
@@ -54,6 +56,14 @@ public class InkDialogueManager : MonoBehaviour
     {
         dialogueText.text = "";
         dialoguePanel.SetActive(false);
+
+        // Check if we should start night dialogue
+        if (GameManager.ShouldStartNightDialogue &&
+            SceneManager.GetActiveScene().name == "Bedroom")
+        {
+            StartCoroutine(StartNightDialogueDelayed());
+            GameManager.ShouldStartNightDialogue = false;
+        }
     }
 
     public void InitAndStartDialogue(string knot)
@@ -100,14 +110,31 @@ public class InkDialogueManager : MonoBehaviour
 
     public void StartNightDialogue()
     {
+        Debug.Log("StartNightDialogue called");
         dialoguePanel.SetActive(true);
+        Debug.Log($"DialoguePanel activated: {dialoguePanel.activeSelf}");
         isNightMode = true;
+        int currentDay = InkStateHandler.GetDate();
+        Debug.Log($"Current day: {currentDay}");
 
-        if (dayPanel != null) dayPanel.SetActive(false);
-        if (nightPanel != null) nightPanel.SetActive(true);
-        if (catPortrait != null) catPortrait.gameObject.SetActive(false);
+        if (dayPanel != null)
+        {
+            dayPanel.SetActive(false);
+            Debug.Log("Day panel deactivated");
+        }
+        if (nightPanel != null)
+        {
+            nightPanel.SetActive(true);
+            Debug.Log("Night panel activated");
+        }
+        if (catPortrait != null)
+        {
+            catPortrait.gameObject.SetActive(false);
+            Debug.Log("Cat portrait deactivated");
+        }
 
-        story.ChoosePathString("night_1");
+        Debug.Log($"Choosing path: night_{currentDay}");
+        story.ChoosePathString($"night_{currentDay}");
         ContinueStory();
     }
 
@@ -219,20 +246,6 @@ public class InkDialogueManager : MonoBehaviour
 
     private void MakeChoice(int choiceIndex)
     {
-        //if (story.currentChoices[choiceIndex].text.Contains("Shoo away"))
-        //{
-        //    CatController cat = FindObjectOfType<CatController>();
-        //    if (cat != null)
-        //    {
-        //        cat.ShooAway();
-        //    }
-        //    EndDialogue();
-        //}
-        //else
-        //{
-        //    story.ChooseChoiceIndex(choiceIndex);
-        //    ContinueStory();
-        //}
         story.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
     }
@@ -256,6 +269,7 @@ public class InkDialogueManager : MonoBehaviour
             if (catPortrait != null) catPortrait.gameObject.SetActive(true);
             if (nightModeManager != null)
             {
+                InkStateHandler.SetNewDay();
                 nightModeManager.EndNightMode();
             }
         }
@@ -274,4 +288,29 @@ public class InkDialogueManager : MonoBehaviour
             );
         }
     }
+
+    private IEnumerator StartNightDialogueDelayed()
+    {
+        // Wait for a frame or two to ensure scene is fully setup
+        yield return new WaitForSeconds(0.1f);
+        shouldStartNightDialogue = false;
+        StartNightDialogue();
+    }
+
+    public void StartNight()
+    {
+        if (InkStateHandler.IsNight())
+        {
+            GameManager.ShouldStartNightDialogue = true;
+            if (LoadingScreen.Instance != null)
+            {
+                LoadingScreen.Instance.LoadScene("Bedroom");
+            }
+            else
+            {
+                SceneManager.LoadScene("Bedroom");
+            }
+        }
+    }
+
 }

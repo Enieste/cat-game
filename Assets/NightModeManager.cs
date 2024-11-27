@@ -22,14 +22,20 @@ public class NightModeManager : MonoBehaviour
 
     public void StartNightMode()
     {
+        Debug.Log("StartNightMode called");
         if (darkOverlay != null)
         {
             darkOverlay.gameObject.SetActive(true);
+            Debug.Log("Darkoverlay activated");
         }
-
         if (dialogueManager != null)
         {
+            Debug.Log("Attempting to start night dialogue");
             dialogueManager.StartNightDialogue();
+        }
+        else
+        {
+            Debug.LogError("DialogueManager is null!");
         }
     }
 

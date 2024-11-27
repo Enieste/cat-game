@@ -123,11 +123,12 @@ public class HungerSystem : MonoBehaviour
     }
 
     public void ProcessTime(float deltaTime, ActivityType activity)
-    {
 
+    {
         if (InkStateHandler.IsNight())
         {
             Debug.LogError("No time can be spent at night, control should be in Ink right now");
+            dialogueManager.StartNight();
             return;
         }
         
