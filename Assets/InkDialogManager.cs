@@ -39,6 +39,7 @@ public class InkDialogueManager : MonoBehaviour
     private Story story;
     private bool canProcessChoices = false;
     private bool shouldStartNightDialogue = false;
+    private bool nightStarted = false;
 
     // TODO figure out how to incapsulate binding callbacks
     public Story GetStory()
@@ -271,12 +272,19 @@ public class InkDialogueManager : MonoBehaviour
             {
                 InkStateHandler.SetNewDay();
                 nightModeManager.EndNightMode();
+                GameManager.NightStarted = false;
             }
         }
     }
 
     void Update()
     {
+        if (InkStateHandler.IsNight() && !GameManager.NightStarted)
+        {
+            GameManager.NightStarted = true;
+            StartNight();
+        }
+
         if (statsText != null)
         {
             statsText.text = string.Format(
