@@ -7,6 +7,9 @@
 === function Play ===
 ~ return
 
+=== function Idle ===
+~ return
+
 === function PutOnFloor ===
 ~ return
 
@@ -21,6 +24,7 @@ EXTERNAL GetPets()
 EXTERNAL SetPets(value)
 EXTERNAL Pet()
 EXTERNAL Feed()
+EXTERNAL Idle()
 EXTERNAL Play()
 EXTERNAL PutOnFloor()
 EXTERNAL CandyWrapperPlay()
@@ -49,15 +53,15 @@ VAR date = 1
 
 {
     - currentPlay < 30 && currentPets < 30:
-        The cat seems very unhappy, desperately trying to get your attention... # cat_0
+        The cat seems very unhappy, desperately trying to get your attention... #show_cat # cat_0
     - currentPets < 30:
-        The cat looks at you longingly, wanting affection... # cat_1
+        The cat looks at you longingly, wanting affection... #show_cat # cat_1
     - currentPlay < 30:
-        The cat seems restless, looking for something to do... # cat_0
+        The cat seems restless, looking for something to do... #show_cat # cat_0
     - currentFood < 30:
-        The cat looks at you with hungry eyes and meows desperately... # cat_0
+        The cat looks at you with hungry eyes and meows desperately... #show_cat # cat_0
     - else:
-        The cat looks at you, content. # cat_1
+        The cat looks at you, content. #show_cat # cat_1
 }
 
 + [Pet the cat]
@@ -335,7 +339,7 @@ He slowly, deliberately, pushes your glass of water closer to the edge. # cat_th
 You wake up naturally, just before your alarm, feeling well-rested. # hide_cat
 The kitten is still curled up at your feet, only stirring when he hears you move.
 He greets you with a tiny, sleepy "mrrp". # show_cat # cat_1
--> END
+-> demo_finish
 
 === Morning_2 ===
 ~ SetPlay(play - 40)
@@ -343,6 +347,11 @@ He greets you with a tiny, sleepy "mrrp". # show_cat # cat_1
 ~ SetFood(food - 30)
 Morning comes, and with it, the realization that having a kitten is like living with a tiny adorable poltergeist. # hide_cat
 But when he curls up purring in your lap at breakfast, somehow it all seems worth it. # show_cat # cat_1
+-> demo_finish
+
+=== demo_finish ===
+That's all for the game so far. Thank you for playing this demo! 
+I'll be updating it soon with more days to play through, more events to discover, and of course, more of our furry friend! =)
 -> END
 
 === toy_under_couch ===
@@ -361,4 +370,34 @@ You notice the kitten pawing desperately at something under the couch. #show_cat
     ++ [Throw it away]
         The kitten watches mournfully as his newfound shiny toy disappears into the kitchen trash. #cat_1
         Sorry little friend, but a clean house is more important than temporary entertainment. #cat_0
+        -> END
+        
+LIST TVShows = (documentary_dogs), (favorite_show), (kids_cartoon), (old_movie), (bird_documentary), (soap_opera), (true_crime)
+
+VAR currentShow = ""
+
+=== function pickRandomShow() ===
+~ return LIST_RANDOM(TVShows)
+
+=== function getShowDescription(show) ===
+{
+    - show == documentary_dogs: ~ return "a documentary about dogs"
+    - show == favorite_show: ~ return "a new episode of your favorite show"
+    - show == kids_cartoon: ~ return "some bizarre, hypnotic children's cartoon"
+    - show == old_movie: ~ return "an old movie that's somehow always on TV"
+    - show == bird_documentary: ~ return "a nature documentary about birds that makes your kitten chirp"
+    - show == soap_opera: ~ return "a dramatic soap opera that makes no sense"
+    - show == true_crime: ~ return "a true crime documentary that's strangely satisfying"
+    - else: ~ return "something on TV"
+}
+
+=== watch_tv ===
+You look at your TV... Maybe watch something for a while?
+    + [Turn it on]
+        ~ Idle()
+        ~ currentShow = pickRandomShow()
+        You prepare some popcorn and watch {getShowDescription(currentShow)}.
+        -> END
+    + [Leave it]
+        You've got other things to do. Now, where did that cat go?..
         -> END

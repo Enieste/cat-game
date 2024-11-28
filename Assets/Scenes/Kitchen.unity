@@ -3457,11 +3457,11 @@ PrefabInstance:
     - target: {fileID: 4603922851491230676, guid: 066a400770ba9472f853c8bb40b886a6, type: 3}
       propertyPath: catExpressions.Array.data[1].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5b5465262fc684841a5e2a064e9962bc, type: 3}
+      objectReference: {fileID: 21300000, guid: 43a7c3d29be2d489c94d9fe892cea8be, type: 3}
     - target: {fileID: 4603922851491230676, guid: 066a400770ba9472f853c8bb40b886a6, type: 3}
       propertyPath: catExpressions.Array.data[2].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 855feca160a7942b29980dd818891b0b, type: 3}
+      objectReference: {fileID: 21300000, guid: 2c5e75006fb6b430dbdc04936c857a6f, type: 3}
     - target: {fileID: 4603922851491230676, guid: 066a400770ba9472f853c8bb40b886a6, type: 3}
       propertyPath: catExpressions.Array.data[3].sprite
       value: 

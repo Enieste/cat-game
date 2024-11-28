@@ -1198,7 +1198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &902531928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1781,7 +1781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1044331350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2664,7 +2664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da13097c182a4364ac431452495ef9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thicknessMultiplier: 0.0005
+  thicknessMultiplier: 0.0003
   outlineColor: {r: 1, g: 0.5, b: 0, a: 1}
 --- !u!114 &1377266715
 MonoBehaviour:
@@ -3135,6 +3135,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1676130025}
   - component: {fileID: 1676130024}
+  - component: {fileID: 1676130028}
+  - component: {fileID: 1676130027}
+  - component: {fileID: 1676130026}
+  - component: {fileID: 1676130029}
   m_Layer: 0
   m_Name: tv
   m_TagString: Untagged
@@ -3209,6 +3213,91 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1456111062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1676130026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676130023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da13097c182a4364ac431452495ef9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thicknessMultiplier: 0.1
+  outlineColor: {r: 1, g: 0.5, b: 0, a: 1}
+--- !u!114 &1676130027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676130023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6f50fa2008540948e72c5afd224caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1767118414}
+  hungerSystem: {fileID: 1611341713}
+--- !u!61 &1676130028
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676130023}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.032914758, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 2.72}
+    newSize: {x: 3.2, y: 2.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4758756, y: 2.72}
+  m_EdgeRadius: 0
+--- !u!114 &1676130029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676130023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d653f95a7644af8b7613af1cc1d287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1711105014
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,9 +3387,9 @@ MonoBehaviour:
   - tagName: cat_0
     sprite: {fileID: 21300000, guid: b91d79789f1cc42d09092b49e9d64f2b, type: 3}
   - tagName: cat_1
-    sprite: {fileID: 21300000, guid: 5b5465262fc684841a5e2a064e9962bc, type: 3}
+    sprite: {fileID: 21300000, guid: 43a7c3d29be2d489c94d9fe892cea8be, type: 3}
   - tagName: cat_thin
-    sprite: {fileID: 21300000, guid: 855feca160a7942b29980dd818891b0b, type: 3}
+    sprite: {fileID: 21300000, guid: 2c5e75006fb6b430dbdc04936c857a6f, type: 3}
   - tagName: cat_wide
     sprite: {fileID: 21300000, guid: 534aa42af881d4a9db4d3d336fda0053, type: 3}
 --- !u!4 &1767118415

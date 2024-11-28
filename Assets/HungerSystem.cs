@@ -64,7 +64,7 @@ public class HungerSystem : MonoBehaviour
 
     private static readonly Dictionary<ActivityType, int> ActivityPlaysPrice = new Dictionary<ActivityType, int>
     {
-        { ActivityType.Resting, 5 },
+        { ActivityType.Resting, 1 },
         { ActivityType.Playing, -3 },
         { ActivityType.Petting, 1 },
         { ActivityType.Eating, 2 }
@@ -72,9 +72,17 @@ public class HungerSystem : MonoBehaviour
     
     private static readonly Dictionary<ActivityType, int> ActivityPetsPrice = new Dictionary<ActivityType, int>
     {
-        { ActivityType.Resting, 5 },
+        { ActivityType.Resting, 1 },
         { ActivityType.Playing, 2 },
         { ActivityType.Petting, -5 },
+        { ActivityType.Eating, 1 }
+    };
+
+    private static readonly Dictionary<ActivityType, int> ActivityRestingPrice = new Dictionary<ActivityType, int>
+    {
+        { ActivityType.Resting, 1 },
+        { ActivityType.Playing, 1 },
+        { ActivityType.Petting, 1 },
         { ActivityType.Eating, 1 }
     };
 
@@ -93,6 +101,8 @@ public class HungerSystem : MonoBehaviour
         InkStateHandler.ReportExternalFunction("Pet");
         dialogueManager.GetStory().BindExternalFunction("Play", Play);
         InkStateHandler.ReportExternalFunction("Play");
+        dialogueManager.GetStory().BindExternalFunction("Idle", Idle);
+        InkStateHandler.ReportExternalFunction("Idle");
 
     }
 
@@ -105,6 +115,10 @@ public class HungerSystem : MonoBehaviour
         if (InkStateHandler.IsExternalFunctionKnown("Play"))
         {
             dialogueManager.GetStory().UnbindExternalFunction("Play");
+        }
+        if (InkStateHandler.IsExternalFunctionKnown("Idle"))
+        {
+            dialogueManager.GetStory().UnbindExternalFunction("Idle");
         }
 
     }
@@ -134,6 +148,11 @@ public class HungerSystem : MonoBehaviour
     public void Play()
     {
         ProcessTime(10, ActivityType.Playing);
+    }
+
+    public void Idle()
+    {
+        ProcessTime(10, ActivityType.Resting);
     }
 
     public void ProcessTime(float deltaTime, ActivityType activity)

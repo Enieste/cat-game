@@ -120,6 +120,17 @@ public class InkDialogueManager : MonoBehaviour
         ContinueStory();
     }
 
+    public void StartTVDialogue()
+    {
+        dialoguePanel.SetActive(true);
+
+        canProcessChoices = false;
+        StartCoroutine(EnableChoicesAfterDelay());
+
+        story.ChoosePathString("watch_tv");
+        ContinueStory();
+    }
+
     public void StartNightDialogue()
     {
         Debug.Log("StartNightDialogue called");
@@ -205,7 +216,6 @@ public class InkDialogueManager : MonoBehaviour
                     {
                         catPortrait.sprite = expression.sprite;
                         catPortrait.gameObject.SetActive(true);
-                        Debug.Log($"Changed cat expression to: {tag}");
                         break;
                     }
                 }
