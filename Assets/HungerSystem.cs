@@ -56,7 +56,7 @@ public class HungerSystem : MonoBehaviour
     private static readonly Dictionary<ActivityType, int> ActivitySaturationPrice = new Dictionary<ActivityType, int>
     {
         { ActivityType.Resting, 1 },
-        { ActivityType.Playing, 3 },
+        { ActivityType.Playing, 2 },
         { ActivityType.Petting, 2 },
         // don't make it positive, it's easier to change food value instead
         { ActivityType.Eating, 0 }

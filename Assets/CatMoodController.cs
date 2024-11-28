@@ -7,8 +7,8 @@ public class CatStateController : MonoBehaviour
     private SpriteRenderer catSprite;
     private HungerState state;
 
-    [SerializeField] private float goodThreshold = 60f;
-    [SerializeField] private float warningThreshold = 20f;
+    private float goodThreshold = 60f;
+    private float warningThreshold = 20f;
 
     [SerializeField] private Color goodColor = Color.green;
     [SerializeField] private Color warningColor = Color.yellow;

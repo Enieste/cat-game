@@ -57,6 +57,6 @@ public class FoodBowl : MonoBehaviour
 
 public class Kibble : IFood
 {
-    public int SaturationValue => 50;
+    public int SaturationValue => 70;
     public int ConsumptionTime => 10;
 }

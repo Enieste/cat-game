@@ -52,13 +52,13 @@ VAR date = 1
 ~ pets = currentPets
 
 {
-    - currentPlay < 30 && currentPets < 30:
+    - currentPlay < 60 && currentPets < 60:
         The cat seems very unhappy, desperately trying to get your attention... #show_cat # cat_0
-    - currentPets < 30:
+    - currentPets < 60:
         The cat looks at you longingly, wanting affection... #show_cat # cat_1
-    - currentPlay < 30:
+    - currentPlay < 60:
         The cat seems restless, looking for something to do... #show_cat # cat_0
-    - currentFood < 30:
+    - currentFood < 60:
         The cat looks at you with hungry eyes and meows desperately... #show_cat # cat_0
     - else:
         The cat looks at you, content. #show_cat # cat_1
@@ -66,7 +66,7 @@ VAR date = 1
 
 + [Pet the cat]
     ~ Pet()
-    {currentFood < 30:
+    {currentFood < 60:
         The cat purrs, but keeps looking at the food bowl... # cat_0
     - else:
         The cat purrs happily, enjoying your attention. # cat_1
@@ -74,7 +74,7 @@ VAR date = 1
     -> END
 + [Play with cat]
     ~ Play()
-    {currentFood < 30:
+    {currentFood < 60:
         The cat tries to play, but seems more interested in food right now. # cat_0
     - else:
         The cat excitedly chases after your fingers! # cat_thin
@@ -93,7 +93,7 @@ The cat watches the food bowl intently. # cat_0
     You put some food into the bowl. The cat happily munches away.
     -> END
 + [Ignore]
-    {currentFood < 30:
+    {currentFood < 60:
         The cat meows sadly and keeps staring at the bowl. # cat_1
     - else:
         The cat loses interest and walks away. # cat_0
@@ -134,7 +134,7 @@ You go to bed... #hide_cat
                             ~ SetPets(pets - 20)
                             -> END
 + [Leave the door open]
-    ~ SetPets(pets - 30)
+    ~ SetPets(pets + 30)
     The kitten follows you to bed immediately... # show_cat # cat_1
     He purrs and curls up next to your pillow.
     You both sleep peacefully.
@@ -185,8 +185,7 @@ When the annoying alarm finally wakes you, the kitten is sleeping sweetly at you
 === Morning_1 ===
 ~ temp currentPlay = GetPlay()
 ~ temp currentPets = GetPets()
-New day. 
-You fill the bowl with extra food and head off to work.
+New day. You fill the bowl with extra food and head off to work.
 In the evening, you hurry home to your little friend.
 ~ SetPlay (currentPlay - 50)
 ~ SetPets (currentPets - 50)
@@ -201,17 +200,17 @@ The cat is comfortably lying on a surface.
         -> END
     + [Gently put him on the floor]
         ~ PutOnFloor()
-        {currentPlay < 30:
+        {currentPlay < 60:
             You manage to place him on the floor, but he tries to bite your fingers in a process. # cat_thin
-            ~ SetPlay(play + 10)
+            ~ SetPlay(play + 20)
         - else:
             The cat purrs as you put him on the floor. # cat_1
-            ~ SetPets(pets + 10)
+            ~ SetPets(pets + 20)
         }
         -> END
     + [He shouldn't be there. Shoo him away]
         ~ PutOnFloor()
-        ~ SetPets(pets - 10)
+        ~ SetPets(pets - 20)
         The cat gives you an annoyed look but jumps down from the surface. # cat_0
         -> END
         
@@ -253,12 +252,11 @@ You're already in bed, ready for sleep. The house is quiet... perhaps too quiet.
             His bowl isn't completely empty, but you can see the bottom. # cat_0
             He lets out another soul-piercing meow. # cat_thin
             ++ [Add more food]
-                ~ SetFood(currentFood + 30)
+                ~ SetFood(currentFood + 40)
                 You add a small scoop. He trills happily and trots off to eat.
                 When you return to bed, he joins you, purring contentedly. # cat_1
                 -> Bedtime_2
             ++ [Go back to bed]
-                ~ SetFood(currentFood - 10)
                 You return to bed. Throughout the night, your dreams are haunted by increasingly creative vocalizations. # hide_cat
                 -> Bedtime_2
                 
@@ -330,23 +328,24 @@ Only to wake up at 3 AM to the sound of your phone hitting the carpet.
 The kitten sits on your nightstand, making direct eye contact. # show_cat # cat_wide
 "Don't you dare," you whisper.
 He slowly, deliberately, pushes your glass of water closer to the edge. # cat_thin
+~ SetPets(pets + 20)
 -> Morning_2
 
 === Morning_2_peaceful ===
-~ SetPlay(play - 20)
-~ SetPets(pets - 20)
-~ SetFood(food - 20)
 You wake up naturally, just before your alarm, feeling well-rested. # hide_cat
 The kitten is still curled up at your feet, only stirring when he hears you move.
 He greets you with a tiny, sleepy "mrrp". # show_cat # cat_1
+~ SetPlay(play - 20)
+~ SetPets(pets - 20)
+~ SetFood(food - 20)
 -> demo_finish
 
 === Morning_2 ===
-~ SetPlay(play - 40)
-~ SetPets(pets - 40)
-~ SetFood(food - 30)
 Morning comes, and with it, the realization that having a kitten is like living with a tiny adorable poltergeist. # hide_cat
 But when he curls up purring in your lap at breakfast, somehow it all seems worth it. # show_cat # cat_1
+~ SetPlay(play - 20)
+~ SetPets(pets - 20)
+~ SetFood(food - 20)
 -> demo_finish
 
 === demo_finish ===
@@ -392,11 +391,24 @@ VAR currentShow = ""
 }
 
 === watch_tv ===
-You look at your TV... Maybe watch something for a while?
+You look at your TV... Maybe watch something for a while? # hide_cat
     + [Turn it on]
         ~ Idle()
         ~ currentShow = pickRandomShow()
         You prepare some popcorn and watch {getShowDescription(currentShow)}.
+         {
+            - food < 60:
+            You hear a long, demanding meow and reluctantly turn off the TV. 
+            Someone needs dinner more than you need entertainment. # show_cat # cat_0
+            - play < 60:
+            The kitten keeps trying to catch everything moving on screen. # show_cat # cat_thin
+            Better turn off the TV before he knocks it over in his excitement. 
+            - pets < 60:
+            The kitten jumps into your lap, purring and rubbing against your cheek. # show_cat # cat_1
+            Hard to focus on the show when someone is so desperately seeking attention. You give up and turn the TV off.
+            - else:
+            It was a good one. Now, where did that cat go?..
+        }
         -> END
     + [Leave it]
         You've got other things to do. Now, where did that cat go?..
