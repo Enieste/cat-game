@@ -6,6 +6,7 @@ TagManager:
   tags:
   - waypoint
   - cat_icon
+  - cat
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - cat
   - LoadingScreen
-  - 
+  - Pause
   - 
   - 
   - 
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: camera
     uniqueID: 3061839297
+    locked: 0
+  - name: Pause
+    uniqueID: 2202523203
     locked: 0

@@ -9,6 +9,7 @@ public class CatController : MonoBehaviour
     [SerializeField] private HungerSystem hungerSystem;
     //private InkDialogueManager dialogueManager;
     [SerializeField] private InkDialogueManager dialogueManager;
+    [SerializeField] private PauseMenuController pauseMenuController;
 
 
     public float moveSpeed = 2f;
@@ -120,7 +121,7 @@ public class CatController : MonoBehaviour
         }
 
         //prevent cat clicks if dialogue is active 
-        if (dialogueManager != null && catCollider != null)
+        if (dialogueManager != null && catCollider != null && !pauseMenuController.IsPaused())
         {
             catCollider.enabled = !dialogueManager.dialoguePanel.activeSelf;
         }
