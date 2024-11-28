@@ -109,6 +109,17 @@ public class InkDialogueManager : MonoBehaviour
         ContinueStory();
     }
 
+    public void StartToyUnderTheCouchDialogue()
+    {
+        dialoguePanel.SetActive(true);
+
+        canProcessChoices = false;
+        StartCoroutine(EnableChoicesAfterDelay());
+
+        story.ChoosePathString("toy_under_couch");
+        ContinueStory();
+    }
+
     public void StartNightDialogue()
     {
         Debug.Log("StartNightDialogue called");

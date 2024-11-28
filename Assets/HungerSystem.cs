@@ -40,6 +40,12 @@ public interface IFood
     int ConsumptionTime { get; }
 }
 
+public interface IToy
+{
+    int Fun { get; }
+    int PlayTime { get; }
+}
+
 public class HungerSystem : MonoBehaviour
 {
     private float accumulatedTime;
@@ -59,7 +65,7 @@ public class HungerSystem : MonoBehaviour
     private static readonly Dictionary<ActivityType, int> ActivityPlaysPrice = new Dictionary<ActivityType, int>
     {
         { ActivityType.Resting, 5 },
-        { ActivityType.Playing, -5 },
+        { ActivityType.Playing, -3 },
         { ActivityType.Petting, 1 },
         { ActivityType.Eating, 2 }
     };
@@ -112,6 +118,14 @@ public class HungerSystem : MonoBehaviour
         ProcessTime(food.ConsumptionTime, ActivityType.Eating);
     }
 
+    public void PlayWith(IToy toy)
+    {
+        float currentPlay = InkStateHandler.GetPlay();
+        float newPlay = Mathf.Min(HungerState.Max, currentPlay + toy.Fun);
+        InkStateHandler.SetPlay(newPlay);
+        ProcessTime(toy.PlayTime, ActivityType.Playing);
+    }
+
     public void Pet()
     {
         ProcessTime(10, ActivityType.Petting);
@@ -136,6 +150,7 @@ public class HungerSystem : MonoBehaviour
         while (accumulatedTime >= 1f)
         {
             var t = Mathf.RoundToInt(accumulatedTime);
+
             float currentSaturation = InkStateHandler.GetFood();
             float saturationLoss = ActivitySaturationPrice[activity] * t;
             float newSaturation = Mathf.Max(HungerState.Min, currentSaturation - saturationLoss);

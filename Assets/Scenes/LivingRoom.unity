@@ -2519,6 +2519,8 @@ GameObject:
   - component: {fileID: 1377266709}
   - component: {fileID: 1377266712}
   - component: {fileID: 1377266713}
+  - component: {fileID: 1377266714}
+  - component: {fileID: 1377266715}
   m_Layer: 0
   m_Name: 1_1
   m_TagString: waypoint
@@ -2622,7 +2624,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.030855834}
@@ -2650,6 +2652,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d653f95a7644af8b7613af1cc1d287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1377266714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377266708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da13097c182a4364ac431452495ef9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thicknessMultiplier: 0.0005
+  outlineColor: {r: 1, g: 0.5, b: 0, a: 1}
+--- !u!114 &1377266715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377266708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a19b24909bf2465dbcc612bce51a8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1767118414}
+  hungerSystem: {fileID: 1611341713}
 --- !u!1 &1404808315
 GameObject:
   m_ObjectHideFlags: 0
