@@ -5,13 +5,15 @@ public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseOverlay;
     [SerializeField] private Button quitButton;
+    [SerializeField] private Button resumeButton;
     private bool isPaused = false;
     private BoxCollider2D catCollider;
 
     void Start()
     {
         pauseOverlay.SetActive(false);
-        quitButton.onClick.AddListener(QuitGame);
+        //quitButton.onClick.AddListener(QuitGame);
+        resumeButton.onClick.AddListener(TogglePause);
 
         GameObject cat = GameObject.FindWithTag("cat");
         if (cat != null)
@@ -33,7 +35,7 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-    void TogglePause()
+    public void TogglePause()
     {
         isPaused = !isPaused;
         pauseOverlay.SetActive(isPaused);

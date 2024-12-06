@@ -195,17 +195,17 @@ In the evening, you hurry home to your little friend.
 ~ temp currentPlay = GetPlay()
 The cat is comfortably lying on a surface.
     + [Pet the cat]
-        The cat purrs contentedly, enjoying the attention. # cat_1
         ~ Pet()
+        The cat purrs contentedly, enjoying the attention. # cat_1
         -> END
     + [Gently put him on the floor]
         ~ PutOnFloor()
         {currentPlay < 60:
+             ~ SetPlay(play + 20)
             You manage to place him on the floor, but he tries to bite your fingers in a process. # cat_thin
-            ~ SetPlay(play + 20)
         - else:
+             ~ SetPets(pets + 20)
             The cat purrs as you put him on the floor. # cat_1
-            ~ SetPets(pets + 20)
         }
         -> END
     + [He shouldn't be there. Shoo him away]

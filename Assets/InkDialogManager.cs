@@ -179,7 +179,7 @@ public class InkDialogueManager : MonoBehaviour
             }
             else if (!story.canContinue)
             {
-                text += "\n\n<color=#808080>Click anywhere to close</color>";
+                text += "\n\n<color=#808080>Click the panel to continue</color>";
             }
 
             dialogueText.text = text;
@@ -294,6 +294,11 @@ public class InkDialogueManager : MonoBehaviour
                 InkStateHandler.SetNewDay();
                 nightModeManager.EndNightMode();
                 GameManager.NightStarted = false;
+            }
+            int currentDay = InkStateHandler.GetDate();
+            if (currentDay <= 3)
+            {
+                SceneManager.LoadScene("StartScene");
             }
         }
     }

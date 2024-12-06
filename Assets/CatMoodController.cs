@@ -14,21 +14,25 @@ public class CatStateController : MonoBehaviour
     [SerializeField] private Color warningColor = Color.yellow;
     [SerializeField] private Color badColor = Color.red;
 
+    private BoxCollider2D catCollider;
+    [SerializeField] private PauseMenuController pauseMenuController;
+
     void Start()
     {
         GameObject catIcon = GameObject.FindWithTag("cat_icon");
         if (catIcon != null)
         {
             catSprite = catIcon.GetComponent<SpriteRenderer>();
+            catCollider = catIcon.GetComponent<BoxCollider2D>();
+            if (catCollider == null)
+            {
+                catCollider = catIcon.AddComponent<BoxCollider2D>();
+                catCollider.size = catSprite.sprite.bounds.size;
+            }
         }
         else
         {
             Debug.LogError("No object with tag 'cat_icon' found!");
-        }
-
-        if (hungerSystem != null)
-        {
-            state = hungerSystem.GetCurrentState();
         }
     }
 
@@ -63,5 +67,17 @@ public class CatStateController : MonoBehaviour
 
         newColor.a = catSprite.color.a;
         catSprite.color = newColor;
+    }
+
+    private void OnMouseDown()
+    {
+        if (pauseMenuController != null)
+        {
+            pauseMenuController.TogglePause();
+        }
+        else
+        {
+            Debug.LogError("PauseMenuController reference is missing!");
+        }
     }
 }

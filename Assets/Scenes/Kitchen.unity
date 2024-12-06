@@ -2686,7 +2686,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1279186097 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7242167204900652747, guid: f9b4f7088944f4a8abffb2e7a9967b26, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7187108877385809843, guid: f9b4f7088944f4a8abffb2e7a9967b26, type: 3}
   m_PrefabInstance: {fileID: 1279186095}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -3704,6 +3704,10 @@ PrefabInstance:
       propertyPath: hungerSystem
       value: 
       objectReference: {fileID: 195910344}
+    - target: {fileID: 6886350733791003999, guid: b3d528bf0ffd946509bf14c5f669d86e, type: 3}
+      propertyPath: pauseMenuController
+      value: 
+      objectReference: {fileID: 1999177086}
     - target: {fileID: 7495374910530248607, guid: b3d528bf0ffd946509bf14c5f669d86e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.01
@@ -3874,11 +3878,15 @@ PrefabInstance:
     - target: {fileID: 530380647254129166, guid: 87aa58ee5a05f457d868f9f6e4d5a180, type: 3}
       propertyPath: quitButton
       value: 
-      objectReference: {fileID: 1279186097}
+      objectReference: {fileID: 0}
     - target: {fileID: 530380647254129166, guid: 87aa58ee5a05f457d868f9f6e4d5a180, type: 3}
       propertyPath: pauseOverlay
       value: 
       objectReference: {fileID: 1279186096}
+    - target: {fileID: 530380647254129166, guid: 87aa58ee5a05f457d868f9f6e4d5a180, type: 3}
+      propertyPath: resumeButton
+      value: 
+      objectReference: {fileID: 1279186097}
     - target: {fileID: 7734143644485350100, guid: 87aa58ee5a05f457d868f9f6e4d5a180, type: 3}
       propertyPath: m_Name
       value: PauseMenuHandler
